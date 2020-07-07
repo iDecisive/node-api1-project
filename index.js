@@ -43,6 +43,15 @@ server.get('/api/users/:id', (req, res) => {
 	res.json(foundUser);
 });
 
+server.delete('/api/users/:id', (req, res) => {
+    const id = req.params.id;
+    const deleted = users.find(item => item.id === id);
+
+    users = users.filter(item => item.id !== id);
+
+    res.json(deleted);
+});
+
 server.listen(PORT, () => {
 	console.log(`Server is running on ${PORT}`);
 });
